@@ -1,0 +1,178 @@
+{% load static %}
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Panel logowania</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="{%static 'css/main.css' %}" />
+<link rel='stylesheet' type='text/css' href={% static 'plugins/styles.css' %}>
+<link rel="shorcut icon" href="https://discordemoji.com/assets/emoji/8219_cheems.png">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+{% for message in messages %}
+<script>
+
+    setTimeout(function funkcja()
+    {
+        alert("{{message}}")
+    }, 50);
+</script>
+{% endfor %}
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+	<head>
+		<title>Ulumulu</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{%static 'css/main.css' %}" />
+		<link rel="shortcut icon" href="https://discordemoji.com/assets/emoji/8219_cheems.png"/>
+
+
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="/">ULUMULU</a></h1>
+						<nav class="links">
+							<ul>
+							{% if user.is_authenticated %}
+								<li><a href="/">Główna</a></li>
+								<li><a href="/pages/formularz">Dodaj</a></li>
+							{% else %}
+								<li><a href="/">Główna</a></li>
+								<li><a href=""></a></li>
+							{% endif %}
+
+							</ul>
+						</nav>
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search">Wyszukaj</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Wyszukaj" />
+									</form>
+								</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+
+
+						<!-- Actions -->
+						<section>
+							<ul class="actions stacked">
+							{% if user.is_authenticated %}
+								<li><a href="/accounts/logout" class="button large fit">Wyloguj się</a></li>
+							{% else %}
+								<li><a href="/accounts/register" class="button large fit">Zaloguj się</a></li>
+							{% endif %}
+							</ul>
+						</section>
+
+					</section>
+
+				<!-- Main -->
+					
+						<div class="cont">
+							<div class="form sign-in">
+							<h2>Witaj ponownie</h2>
+							<form action="register" method="POST">
+							  {% csrf_token %}
+							<label>
+							<span>login</span>
+							<input type="text" name="username" >
+							</label>
+							<label>
+							<span>Hasło</span>
+							<input type="password" name="password">
+							<button onclick="funkcja()" type="submit" class="submit" name="log">Zaloguj</button>
+							</label>
+
+							
+							</form>
+							</div>
+							<div class="sub-cont">
+							<div class="img">
+							<div class="img__text m--up">
+							<h2 style="color: wheat;">Nie posiadasz konta?</h2>
+							<p>Dołącz do nas i ciesz się nowymi funkcjami naszej strony</p>
+							</div>
+							<div class="img__text m--in">
+							<h2 style="color: wheat;">Posiadasz już konto?</h2>
+							<p>W takim razie zaloguj się, tęskniliśmy!</p>
+							</div>
+							<div class="img__btn">
+							<span class="m--up">Załóż konto</span>
+							<span class="m--in">Zaloguj</span>
+							</div>
+							</div>
+							<div class="form sign-up">
+							<h2>Czas rozpocząć wspólną przygodę</h2>
+							<form action="register" method="POST" enctype="multipart/form-data">
+								{% csrf_token %}
+							<label>
+							<span>Login</span>
+							<input type="text" name="username" />
+							</label>
+							<label>
+							<span>Email</span>
+							<input type="email" name="email" />
+							</label>
+							<label>
+							<span>Hasło</span>
+							<input type="password" name="password1" />
+							</label>
+							<label>
+							  <span>POwtórz Hasło</span>
+							  <input type="password" name="password2"/>
+							  <button onclick="funkcja()" type="submit" class="submit" name="reg">Utwórz konto</button>
+							  </label>
+						
+							</form>
+								</div>
+							  </div>
+							</div>
+					</div>
+						<!-- Footer -->
+
+
+					</section>
+
+			
+			<script id="rendered-js">
+				document.querySelector('.img__btn').addEventListener('click', function () 
+				{
+				  document.querySelector('.cont').classList.toggle('s--signup');
+				});
+				
+				var elem = "{{stan}}"
+				
+				if (elem == "nie")
+				{
+				  document.querySelector('.cont').classList.toggle('s--signup');
+				}
+					</script>
+		<!-- Scripts -->
+			<script src="{%static 'js/jquery.min.js' %}"></script>
+			<script src="{%static 'js/browser.min.js' %}"></script>
+			<script src="{%static 'js/breakpoints.min.js' %}"></script>
+			<script src="{%static 'js/util.js' %}"></script>
+			<script src="{%static 'js/main.js' %}"></script>
+
+	</body>
+</html>

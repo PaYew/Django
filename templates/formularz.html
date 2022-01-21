@@ -1,0 +1,141 @@
+{% load static %}
+{% static "{%static 'images" as baseUrl %}
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Ulumulu</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{%static 'css/main.css' %}" />
+		<link rel="shortcut icon" href="https://discordemoji.com/assets/emoji/8219_cheems.png"/>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+	</head>
+	<body onload="funkcja()" class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="/">ULUMULU</a></h1>
+						<nav class="links">
+							<ul>
+							{% if user.is_authenticated %}
+								<li><a href="/">Główna</a></li>
+								<li><a href="">Dodaj</a></li>
+							{% else %}
+								<li><a href="/">Główna</a></li>
+							{% endif %}
+
+							</ul>
+						</nav>
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search">Wyszukaj</a> 
+									<form id="search" method="GET" action="/">
+										<input type="text" name="quer" placeholder="Wyszukaj" />
+									</form>
+								</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+
+							<section>
+								<ul class="actions stacked">
+								{% if user.is_authenticated %}
+									<li><a href="accounts/logout" class="button large fit">Wyloguj się</a></li>
+								{% else %}
+									<li><a href="accounts/register" class="button large fit">Zaloguj się</a></li>
+								{% endif %}
+								</ul>
+							</section>
+
+
+						<!-- Links -->
+						<section>
+							<ul class="links">
+							{% if user.is_authenticated %}
+								<li>
+									<a href="/accounts/profile">
+										<h3>Mój profil</h3>
+										<p>Przejdź do swojego profilu</p>
+									</a>
+								</li>
+							{% endif %}
+							</ul>
+						</section>
+
+				
+
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+						<section>
+							<h3>Dodaj post</h3>
+							<form method="post" action="formularz" enctype="multipart/form-data">
+								{% csrf_token %}
+								{{ form.as_p}}
+								<div class="row gtr-uniform">
+                                      <div class="col-12"> </div>
+									<div class="col-12">
+										<ul class="actions">
+											<li><input type="submit" value="Dodaj post" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</div>
+								</div>
+                            </form> 
+						</section>
+					</div>
+
+				<!-- Sidebar -->
+					<section id="sidebar">
+
+						<!-- Intro -->
+							<section id="intro">
+								<a href="#" class="logo"><img src="{%static 'images/logo.jpg' %}" alt="" /></a>
+								<header>
+									<h2>Ulumulu <br>blog</h2>
+									<p>Najlepszy blog w Jasionce</p>
+								</header>
+							</section>
+
+
+
+
+						<!-- About -->
+							<section class="blurb">
+								<h2>O stronie</h2>
+								<p>Serdecznie zapraszam do dodawania postów na moim blogu, pozdrawiam <br>~ Baweu2k</p>
+
+							</section>
+
+
+
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{%static 'js/jquery.min.js' %}"></script>
+			<script src="{%static 'js/browser.min.js' %}"></script>
+			<script src="{%static 'js/breakpoints.min.js' %}"></script>
+			<script src="{%static 'js/util.js' %}"></script>
+			<script src="{%static 'js/main.js' %}"></script>
+
+	</body>
+</html>

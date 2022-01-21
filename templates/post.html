@@ -1,0 +1,147 @@
+{% load static %}
+{% static "{%static 'images" as baseUrl %}
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Ulumulu</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{%static 'css/main.css' %}" />
+		<link rel="shortcut icon" href="https://discordemoji.com/assets/emoji/8219_cheems.png"/>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+		
+		<style>
+			.title > h2{
+				text-align: center;
+			}
+
+			.mini-post {
+				width: 25%;
+				display: inline-block;
+				max-height: 200px;
+				margin: 1%;
+			}
+			
+			.image img {
+				max-height: 145px;
+			}
+		</style>
+
+	</head>
+	<body  class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+
+						<h1><a href="/">ULUMULU</a></h1>
+						<nav class="links">
+							<ul>
+								<li><a href="/">Główna</a></li>
+								<li><a href="/pages/formularz">Dodaj</a></li>
+								
+
+							</ul>
+						</nav>
+
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search">Wyszukaj</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Wyszukaj" />
+									</form>
+								</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+
+					</header>
+
+				<!-- Menu -->
+				<section id="menu">
+
+						<section>
+							<ul class="actions stacked">
+							{% if user.is_authenticated %}
+								<li><a href="/accounts/logout" class="button large fit">Wyloguj się</a></li>
+							{% else %}
+								<li><a href="/accounts/register" class="button large fit">Zaloguj się</a></li>
+							{% endif %}
+							</ul>
+						</section>
+
+				<!-- Links -->
+					<section>
+						<ul class="links">
+						{% if user.is_authenticated %}
+							<li>
+								<a href="/accounts/profile">
+									<h3>Mój profil</h3>
+									<p>Przejdź do swojego profilu</p>
+								</a>
+							</li>
+						{% endif %}
+						</ul>
+					</section>
+
+				</section>
+
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post" style="width: 60%; margin: auto">
+							{% for adv in post %}
+								<header>
+									<div class="title">
+										<h2><a href="#">{{adv.title}}</a></h2>
+										
+									</div>
+									<div class="meta">
+										<a href="#" class="author" style="margin-right: 16%;">Data utworzenia</a>
+										<time class="published" datetime="2015-11-01" style="margin-left: -7%;">{{adv.created}}</time>
+										
+									</div>
+								</header>
+								
+
+								
+									
+								<p id="content">{{adv.desc}}</p>
+										<img src="{{adv.img.url}}" style="width: 100%">
+									</a>
+											
+
+											
+								<footer>
+									<ul class="stats">
+										
+										<li><a href="#" class="icon solid fa-heart">{{adv.like}}</a></li>
+										
+									</ul>
+								</footer>
+							{% endfor %}
+							</article>
+					</div>
+			</div>
+
+		<!-- Scripts -->
+		<script src="{%static 'js/jquery.min.js' %}"></script>
+		<script src="{%static 'js/browser.min.js' %}"></script>
+		<script src="{%static 'js/breakpoints.min.js' %}"></script>
+		<script src="{%static 'js/util.js' %}"></script>
+		<script src="{%static 'js/main.js' %}"></script>
+
+	</body>
+</html>

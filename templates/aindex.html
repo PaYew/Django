@@ -1,0 +1,161 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @alkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>ULUMULU</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{%static 'styles/main.css' %}">
+		<link rel="stylesheet" href="{%static 'styles/styl.css' %}">
+		<noscript><link rel="stylesheet" href="{%static 'styles/noscript.css' %}"/></noscript>
+		<script type="text/javascript">
+		  history.scrollRestoration = "manual"
+		$(window).on('beforeunload', function(){$(window).scrollTop(0);});
+			function zegar(){
+					
+					d = new Date();
+					var h=d.getHours(),m=d.getMinutes(),s=d.getSeconds(),r;
+					r=(h<10?"0"+h:h)+":"+(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);
+					
+					document.getElementById('czas').innerHTML=r;
+					setTimeout("zegar()", 1000);
+					
+				}
+	
+				</script>
+				<link rel="shortcut icon" href="https://discordemoji.com/assets/emoji/8219_cheems.png"/>
+	</head>
+	<body onload="javascript:zegar()" class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Intro -->
+					<div id="intro">
+						<h1>ULUMULU</h1><br><br>
+						
+						<ul class="actions">
+							<li><a href="#header" class="button icon solo fa-arrow-down scrolly">Continue</a></li>
+						</ul>
+					</div>
+
+				<!-- Header -->
+					<header id="header">
+						<a href="/" class="logo">ULUMULU</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="/">ULUMULU</a></li>
+							{% if user.is_staff %}
+							<li><a href="pages/ogloszenia">Pliki</a></li>
+							{% endif %}
+						 		<!--<li><a href="strona_2">Strona_2</a></li>
+							<li><a href="strona_3">Strona_3</a></li>
+							
+							<li><a href="strona_4">Strona_4</a></li>-->
+
+							
+							
+							{% if user.is_authenticated %}
+							
+							<li class="active" style=" margin-left: 41rem; margin-right: calc(-1rem - 0em);background-color: rgba(255, 255, 255, 0.8);"><a  href="accounts/profile">Mój profil</a></li>
+							<li class="active" style="margin-left: 1rem;margin-right: -3rem;"><a  href="accounts/logout">Wyloguj</a></li>
+							{% else %}
+							<li class="active" style="margin-left: 55rem;margin-right: -3rem;"><a  href="accounts/register">Logowanie</a></li>
+							{% endif %}
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Featured Post -->
+							<article class="post featured">
+								<header class="major">
+									<span id="czas" class="date"></span>
+									<h2><a href="#">Ulumulu</a></h2>
+								<!----	<p>XD</p> -->
+								</header>
+						
+							</article>
+
+
+
+
+
+
+
+
+					</div>
+
+					<div id="footer">
+						<!-- Footer -->
+						<footer style="padding: 0;">
+							<section class="wrapper">
+								<div class="inner">
+								
+									<div class="testimonials">
+											<!----
+										<section style="margin: auto">
+											<div class="content">
+												<blockquote>
+													<p>Problem z bycia szybszym niż światło jest taki, że ciągle żyjesz w ciemności.</p>
+												</blockquote>
+												<div class="author">
+													<div class="image">
+														<img src="{%static 'images/pics01.jpg' %}" alt="" />
+													</div>
+													<p class="credit">- <strong>Paweł Dziągwa-</strong> <br><span>CEO - Ulumulu inc.</span></p>
+												</div>
+											</div>
+										</section> -->
+										
+									<!----	<section style="margin: auto">
+											<div class="content">
+												<blockquote>
+													<p>Kiedyś dałbym sobie rękę uciąć, że to nie zadziała. Teraz nie miałbym ręki.</p>
+												</blockquote>
+												<div class="author">
+													<div class="image">
+														<img src="{%static 'images/pics02.jpg' %}" alt="" />
+													</div>
+													<p class="credit">- <strong>Maciej Grata -</strong> <br><span>CEO - Ulumulu inc.</span></p>
+												</div>
+											</div>
+										</section> -->
+									</div>
+								</div>
+							</section>
+						</footer>
+					</div>
+
+					
+				<div id="copyright">
+					<ul><li>&copy; Ulumulu 2020</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li><li>Distributor: <a href="https://themewagon.com">ThemeWagon</a></li></ul>
+				</div>
+			</div>
+
+			
+
+
+
+
+
+		<!-- Scripts -->
+			<script src="{%static 'js/jquery.min.js' %}"></script>
+			<script src="{%static 'js/jquery.scrollex.min.js' %}"></script>
+			<script src="{%static 'js/jquery.scrolly.min.js' %}"></script>
+			<script src="{%static 'js/skel.min.js' %}"></script>
+			<script src="{%static 'js/util.js' %}"></script>
+			<script src="{%static 'js/main.js' %}"></script>
+			
+	</body>
+</html>

@@ -1,0 +1,186 @@
+{% load static %}
+{% static "{%static 'images" as baseUrl %}
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Ulumulu</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{%static 'css/main.css' %}" />
+		<link rel="shortcut icon" href="https://discordemoji.com/assets/emoji/8219_cheems.png"/>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+		<script>
+			var done = false;
+
+			function funkcja(id)
+			{
+				
+				if(!done){
+					like = document.getElementById("like-"+id);
+					like_content = like.textContent;
+					like_content_int = parseInt(like_content);
+	
+					like.innerHTML = like_content_int + 1;
+					done = true;
+				}
+				
+				
+			}
+		</script>
+
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="/">ULUMULU</a></h1>
+						<nav class="links">
+							<ul>
+							{% if user.is_authenticated %}
+								<li><a href="/">Główna</a></li>
+								<li><a href="pages/formularz">Dodaj</a></li>
+							{% else %}
+								<li><a href="#">Główna</a></li>
+							{% endif %}
+
+							</ul>
+						</nav>
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search">Wyszukaj</a> 
+									<form id="search" method="GET" action="/">
+										<input type="text" name="quer" placeholder="Wyszukaj" />
+									</form>
+								</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+					<!-- Menu -->
+					<section id="menu">
+
+						<section>
+							<ul class="actions stacked">
+							{% if user.is_authenticated %}
+								<li><a href="accounts/logout" class="button large fit">Wyloguj się</a></li>
+							{% else %}
+								<li><a href="accounts/register" class="button large fit">Zaloguj się</a></li>
+							{% endif %}
+							</ul>
+						</section>
+
+
+						<!-- Links -->
+						<section>
+							<ul class="links">
+							{% if user.is_authenticated %}
+								<li>
+									<a href="accounts/profile">
+										<h3>Mój profil</h3>
+										<p>Przejdź do swojego profilu</p>
+									</a>
+								</li>
+							{% endif %}
+							</ul>
+						</section>
+
+				
+
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+						
+						<!-- Post -->
+						{% for adv in post %}
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2><a href="pages/post?nr={{adv.id}}">{{adv.title}}</a></h2>
+									</div>
+									<div class="meta">
+										<a href="#" class="author" style="margin-right: 16%;margin-top: -10%;">Data utworzenia</a>
+										<time class="published" datetime="2015-11-01" style="margin-left: -7%;">{{adv.created}}</time>
+										<a href="#" class="author"><span class="name">{{adv.author}}</span><img src="{%static 'images/avatar.jpg' %}" alt="" /></a>
+									</div>
+								</header>
+								<a href="pages/post?nr={{adv.id}}" class="image featured"><img src="{{adv.img.url}}" alt="" /></a>
+								
+								<footer>
+									<ul class="actions">
+										<li><a href="pages/post?nr={{adv.id}}" class="button large">Przeglądaj</a></li>
+									</ul>
+									<ul class="stats">
+										<button class="icon solid fa-heart" class="disable-selection" id="like-{{adv.id}}" onclick="funkcja({{adv.id}})" style="cursor: pointer; user-select: none;">{{adv.like}}</button>
+									</ul>
+								</footer>
+							</article>
+						{% endfor %}
+
+					</div>
+
+				<!-- Sidebar -->
+					<section id="sidebar">
+
+						<!-- Intro -->
+							<section id="intro">
+								<a href="" class="logo"><img src="{%static 'images/logo.jpg' %}" alt="" /></a>
+								<header>
+									<h2>Ulumulu <br>blog</h2>
+									<p>Najlepszy blog w Jasionce</p>
+								</header>
+							</section>
+
+						
+
+						<!-- Posts List -->
+							<section>
+								<ul class="posts">
+								{% for adv in post %}
+									<li>
+										<article>
+											<header>
+												<h3><a href="pages/post?nr={{adv.id}}">{{adv.title}}</a></h3>
+												
+												<time class="published" datetime="{{adv.created}}">{{adv.created}}</time>
+											</header>
+											<a href="pages/post?nr={{adv.id}}" class="image"><img src="{{adv.img.url}}" alt="" /></a>
+										</article>
+									</li>
+								{% endfor %}
+								</ul>
+							</section>
+
+						<!-- About -->
+							<section class="blurb">
+								<h2>O stronie</h2>
+								<p>Serdecznie zapraszam do dodawania postów na moim blogu, pozdrawiam <br>~ Baweu2k</p>
+							</section>
+
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{%static 'js/jquery.min.js' %}"></script>
+			<script src="{%static 'js/browser.min.js' %}"></script>
+			<script src="{%static 'js/breakpoints.min.js' %}"></script>
+			<script src="{%static 'js/util.js' %}"></script>
+			<script src="{%static 'js/main.js' %}"></script>
+
+	</body>
+</html>
